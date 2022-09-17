@@ -5,6 +5,9 @@ services:
         environment:
           - SA_PASSWORD=Pass@word
           - ACCEPT_EULA=Y
+          - SeqServerUrl=${SeqServerUrlVar}
+          - LogstashgUrl=${LogstashUrlVar}
+
         ports:
           - "5433:1433"
         volumes:

@@ -1,7 +1,32 @@
 
 var configuration = GetConfiguration();
-var host = CreateHostBuilder(configuration, args);
-host.Run();
+//var host = CreateHostBuilder(configuration, args);
+Log.Logger = CreateSerilogLogger(configuration);
+
+
+try
+{
+    var host = CreateHostBuilder(configuration, args);
+    Log.Information("Configuring web host ({ApplicationContext})...", Program.AppName);
+    Log.Information("Applying migrations ({ApplicationContext})...", Program.AppName);
+
+
+    Log.Information("Starting web host ({ApplicationContext})...", Program.AppName);
+    host.Run();
+
+}
+catch (Exception ex)
+{
+    Log.Fatal(ex, "Host terminated unexpectedly");
+}
+finally
+{
+    Log.CloseAndFlush();
+}
+
+
+
+
 
 IHost CreateHostBuilder(IConfiguration configuration, string[] args) =>
 Host.CreateDefaultBuilder(args)
@@ -13,6 +38,7 @@ Host.CreateDefaultBuilder(args)
       .ConfigureAppConfiguration(x => x.AddConfiguration(configuration))
       .CaptureStartupErrors(false);
    })
+   .UseSerilog()
    .Build();
 
 
@@ -27,6 +53,34 @@ IConfiguration GetConfiguration()
         .AddEnvironmentVariables();
     return builder.Build();
 }
+
+
+Serilog.ILogger CreateSerilogLogger(IConfiguration configuration)
+{
+    var seqServerUrl = configuration["SeqServerUrl"];
+    var logstashUrl = configuration["LogstashgUrl"];
+    return new LoggerConfiguration()
+          .MinimumLevel.Verbose()
+              .Enrich.WithProperty("Environment", "Development")
+              .Enrich.WithProperty("Application", Program.AppName)
+              .Enrich.FromLogContext()
+              .WriteTo.Console()
+              .WriteTo.File(new RenderedCompactJsonFormatter(), "log.ndjson", restrictedToMinimumLevel: Serilog.Events.LogEventLevel.Verbose)
+              .WriteTo.File("log.txt", rollingInterval: RollingInterval.Day,
+              rollOnFileSizeLimit: true, restrictedToMinimumLevel: Serilog.Events.LogEventLevel.Warning)
+              .WriteTo.Seq(string.IsNullOrWhiteSpace(seqServerUrl) ? "http://seq" : seqServerUrl)
+              .WriteTo.Http(string.IsNullOrWhiteSpace(logstashUrl) ? "http://logstash:8080" : logstashUrl, null)
+              .ReadFrom.Configuration(configuration).CreateLogger();
+}
+
+public partial class Program
+{
+
+    public static string? Namespace = typeof(Startup).Namespace;
+    public static string? AppName = "Catalog.API";
+}
+
+
 
 
 //var builder = WebApplication.CreateBuilder(args);
