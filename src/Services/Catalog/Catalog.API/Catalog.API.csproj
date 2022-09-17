@@ -14,15 +14,10 @@
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
 
-	  <PackageReference Include="Serilog.AspNetCore" Version="5.0.0" />
-	  <PackageReference Include="Serilog.Enrichers.Environment" Version="2.2.1-dev-00787" />
-	  <PackageReference Include="Serilog.Settings.Configuration" Version="3.3.0" />
-	  <PackageReference Include="Serilog.Sinks.Console" Version="4.0.1" />
-	  <PackageReference Include="Serilog.Sinks.Http" Version="8.0.0" />
+  </ItemGroup>
 
-	  <PackageReference Include="Serilog.Sinks.Seq" Version="5.1.1" />
-
-
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\BuildingBlocks\Loggin\Common.Loggin\Common.Loggin.csproj" />
   </ItemGroup>
 
 </Project>

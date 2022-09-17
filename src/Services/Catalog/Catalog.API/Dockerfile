@@ -10,6 +10,7 @@ WORKDIR /src
 
 COPY ["eShop-services.sln". "eShop-services.sln"]
 COPY ["Services/Catalog/Catalog.API/Catalog.API.csproj", "Services/Catalog/Catalog.API/"]
+COPY ["BuildingBlocks/Logging/Common.Logging/Common.Logging.csproj", "BuildingBlocks/Logging/Common.Logging/"]
 #RUN dotnet restore "src/Services/Catalog/Catalog.Api/Catalog.API.csproj"
 COPY "docker-compose.dcproj" "docker-compose.dcproj"
 

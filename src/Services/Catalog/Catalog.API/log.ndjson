@@ -1,0 +1,12 @@
+{"@t":"2022-09-17T15:24:38.2262493Z","@m":"Configuring web host (\"Catalog.API\")...","@i":"219d9ae2","ApplicationContext":"Catalog.API","Environment":"Development","Application":"Catalog.API"}
+{"@t":"2022-09-17T15:24:38.3667895Z","@m":"Applying migrations (\"Catalog.API\")...","@i":"b1cd8856","ApplicationContext":"Catalog.API","Environment":"Development","Application":"Catalog.API"}
+{"@t":"2022-09-17T15:24:38.3687156Z","@m":"Starting web host (\"Catalog.API\")...","@i":"c0f46b32","ApplicationContext":"Catalog.API","Environment":"Development","Application":"Catalog.API"}
+{"@t":"2022-09-17T15:24:38.6345731Z","@m":"Using PATH BASE '\"/catalog-api\"'","@i":"a1eb7edb","@l":"Debug","pathBase":"/catalog-api","SourceContext":"eShop.Services.Catalog.Catalog.API.Startup","Environment":"Development","Application":"Catalog.API"}
+{"@t":"2022-09-17T15:24:50.8021140Z","@m":"Configuring web host (\"Catalog.API\")...","@i":"219d9ae2","ApplicationContext":"Catalog.API","Environment":"Development","Application":"Catalog.API"}
+{"@t":"2022-09-17T15:24:50.8562885Z","@m":"Applying migrations (\"Catalog.API\")...","@i":"b1cd8856","ApplicationContext":"Catalog.API","Environment":"Development","Application":"Catalog.API"}
+{"@t":"2022-09-17T15:24:50.8578535Z","@m":"Starting web host (\"Catalog.API\")...","@i":"c0f46b32","ApplicationContext":"Catalog.API","Environment":"Development","Application":"Catalog.API"}
+{"@t":"2022-09-17T15:24:50.9984341Z","@m":"Using PATH BASE '\"/catalog-api\"'","@i":"a1eb7edb","@l":"Debug","pathBase":"/catalog-api","SourceContext":"eShop.Services.Catalog.Catalog.API.Startup","Environment":"Development","Application":"Catalog.API"}
+{"@t":"2022-09-17T15:45:15.0874356Z","@m":"Configuring web host (\"Catalog.API\")...","@i":"219d9ae2","ApplicationContext":"Catalog.API","Environment":"Development","Application":"Catalog.API"}
+{"@t":"2022-09-17T15:45:15.1817008Z","@m":"Applying migrations (\"Catalog.API\")...","@i":"b1cd8856","ApplicationContext":"Catalog.API","Environment":"Development","Application":"Catalog.API"}
+{"@t":"2022-09-17T15:45:15.1830318Z","@m":"Starting web host (\"Catalog.API\")...","@i":"c0f46b32","ApplicationContext":"Catalog.API","Environment":"Development","Application":"Catalog.API"}
+{"@t":"2022-09-17T15:45:15.5106344Z","@m":"Using PATH BASE '\"/catalog-api\"'","@i":"a1eb7edb","@l":"Debug","pathBase":"/catalog-api","SourceContext":"eShop.Services.Catalog.Catalog.API.Startup","Environment":"Development","Application":"Catalog.API"}

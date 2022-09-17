@@ -1,7 +1,7 @@
 
 var configuration = GetConfiguration();
 //var host = CreateHostBuilder(configuration, args);
-Log.Logger = CreateSerilogLogger(configuration);
+//Log.Logger = CreateSerilogLogger(configuration);
 
 
 try
@@ -38,7 +38,7 @@ Host.CreateDefaultBuilder(args)
       .ConfigureAppConfiguration(x => x.AddConfiguration(configuration))
       .CaptureStartupErrors(false);
    })
-   .UseSerilog()
+   .UseSerilog(SeriLogger.Configure)
    .Build();
 
 
@@ -55,23 +55,23 @@ IConfiguration GetConfiguration()
 }
 
 
-Serilog.ILogger CreateSerilogLogger(IConfiguration configuration)
-{
-    var seqServerUrl = configuration["SeqServerUrl"];
-    var logstashUrl = configuration["LogstashgUrl"];
-    return new LoggerConfiguration()
-          .MinimumLevel.Verbose()
-              .Enrich.WithProperty("Environment", "Development")
-              .Enrich.WithProperty("Application", Program.AppName)
-              .Enrich.FromLogContext()
-              .WriteTo.Console()
-              .WriteTo.File(new RenderedCompactJsonFormatter(), "log.ndjson", restrictedToMinimumLevel: Serilog.Events.LogEventLevel.Verbose)
-              .WriteTo.File("log.txt", rollingInterval: RollingInterval.Day,
-              rollOnFileSizeLimit: true, restrictedToMinimumLevel: Serilog.Events.LogEventLevel.Warning)
-              .WriteTo.Seq(string.IsNullOrWhiteSpace(seqServerUrl) ? "http://seq" : seqServerUrl)
-              .WriteTo.Http(string.IsNullOrWhiteSpace(logstashUrl) ? "http://logstash:8080" : logstashUrl, null)
-              .ReadFrom.Configuration(configuration).CreateLogger();
-}
+//Serilog.ILogger CreateSerilogLogger(IConfiguration configuration)
+//{
+//    var seqServerUrl = configuration["SeqServerUrl"];
+//    var logstashUrl = configuration["LogstashgUrl"];
+//    return new LoggerConfiguration()
+//          .MinimumLevel.Verbose()
+//              .Enrich.WithProperty("Environment", "Development")
+//              .Enrich.WithProperty("Application", Program.AppName)
+//              .Enrich.FromLogContext()
+//              .WriteTo.Console()
+//              .WriteTo.File(new RenderedCompactJsonFormatter(), "log.ndjson", restrictedToMinimumLevel: Serilog.Events.LogEventLevel.Verbose)
+//              .WriteTo.File("log.txt", rollingInterval: RollingInterval.Day,
+//              rollOnFileSizeLimit: true, restrictedToMinimumLevel: Serilog.Events.LogEventLevel.Warning)
+//              .WriteTo.Seq(string.IsNullOrWhiteSpace(seqServerUrl) ? "http://seq" : seqServerUrl)
+//              .WriteTo.Http(string.IsNullOrWhiteSpace(logstashUrl) ? "http://logstash:8080" : logstashUrl, null)
+//              .ReadFrom.Configuration(configuration).CreateLogger();
+//}
 
 public partial class Program
 {

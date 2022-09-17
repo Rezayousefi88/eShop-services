@@ -8,3 +8,5 @@
 /src/Services/Catalog/Catalog.API/obj
 /src/bin
 /src/obj
+/src/BuildingBlocks/Loggin/Common.Loggin/obj
+/src/BuildingBlocks/Loggin/Common.Loggin/bin/Debug/net6.0
